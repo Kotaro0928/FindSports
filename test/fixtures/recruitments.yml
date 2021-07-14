@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  sport_id: 1
+  title: MyString
+  event_date: 2021-07-05 15:16:25
+  due_date: 2021-07-05 15:16:25
+  prefecture: MyString
+  place: MyString
+  recruit_number: 1
+  level: MyString
+  body: MyText
+
+two:
+  user_id: 1
+  sport_id: 1
+  title: MyString
+  event_date: 2021-07-05 15:16:25
+  due_date: 2021-07-05 15:16:25
+  prefecture: MyString
+  place: MyString
+  recruit_number: 1
+  level: MyString
+  body: MyText

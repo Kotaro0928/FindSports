@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 text-center">
+      <%= render 'users/side-profile' %>
+
+    </div>
+    <div class="col-lg-9 show-blog">
+      <h3>ブログ詳細</h3>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>タイトル</th>
+            <td><%= @blog.title %></td>
+          </tr>
+          <tr>
+            <th>投稿者</th>
+            <td>
+              <%= link_to user_path(@blog.user_id), class:'user_name' do %>
+                <%= attachment_image_tag @blog.user, :profile_image, size: '30x30', format:'jpg', fallback:'no_image.png', class:'profile_image' %>
+                <%= @blog.user.name %></br>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th>スポーツ名</th>
+            <td><%= @blog.sport %></td>
+          </tr>
+          <tr>
+            <th>本文</th>
+            <td><%= @blog.body %></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="like-comment">
+        <% if @blog.liked_by?(current_user) %>
+          <p>
+            <%= link_to blog_blog_likes_path(@blog), method: :delete do %>
+              ♥<%= @blog.blog_likes.count %> いいね
+            <% end %>
+          </p>
+        <% else %>
+          <p>
+            <%= link_to blog_blog_likes_path(@blog), method: :post do %>
+              ♡<%= @blog.blog_likes.count %> いいね
+            <% end %>
+          </p>
+        <% end %>
+        
+        <div class="text-center">
+          <%= link_to "募集の投稿者にメッセージを送る", root_path, class:'btn btn-info' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

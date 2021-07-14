@@ -1,0 +1,201 @@
+@import "bootstrap";
+
+// header
+.navbar-brand {
+  background: url("logo.png") no-repeat center;
+  background-size: contain;
+  height: 40px;
+  width: 150px;
+}
+
+//pagination
+.pagination>li>a {
+  border: none;
+  color: #696969;
+}
+.pagination>.active>a {
+  background: #93c9ff;
+  border-radius: 5px;
+}
+.pagination>li>a:hover {
+  border-radius: 5px;
+}
+
+//sign_in,sign_upページ
+.devise_block {
+  width: 30%;
+  margin: 30px auto;
+  border: medium groove gray;
+  h3 {
+    margin: 30px 0;
+    text-align: center;
+  }
+  .field {
+    margin: 15px 0;
+    text-align: center;
+    .enter-field {
+      border: thin solid gray;
+      border-radius: 5px;
+      background-color: #DDDDDD;
+    }
+    em {
+      font-size: small;
+    }
+  }
+  .actions {
+    margin: 30px 0;
+    text-align: center;
+  }
+  .sign-up-button {
+    width: 40ex;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    background-color: #FE595F;
+  }
+  .button-area {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    text-align: center;
+    em {
+      font-size: small;
+    }
+  }
+  .sign-in-button {
+    width: 40ex;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+  }
+  .foget-password {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+}
+
+// topページ
+.top_image1 {
+  width: 100%;
+  height: 400px;
+}
+
+//side-profile部分
+.side-profile {
+  margin: 50px auto;
+  .profile_image {
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}
+
+//recruitments/new・editページ
+.new-edit-recruit {
+  margin: 50px auto;
+  .title {
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+  .btn {
+    margin-top: 30px;
+  }
+}
+
+//recruitmentsページ
+.index-recruit {
+  margin: 50px auto;
+  h3 {
+    margin-bottom: 20px;
+  }
+  .recruit-record {
+    width: 100%;
+    border-top: thin solid gray;
+    .title {
+      color: black;
+    }
+    .user_name {
+      color: black;
+      .profile_image {
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    }
+  }
+  .recruit-record:last-child {
+    border-bottom: thin solid gray;
+  }
+  .page {
+    margin-top: 20px;
+    display: flex;
+	  justify-content: center;
+	  align-items: center;
+  }
+}
+
+//recruitments/idページ
+.show-recruit {
+  margin: 50px auto;
+  .table {
+    height: 35vh;
+  }
+  .table td {
+    word-break : break-all;
+  }
+  .btn {
+    margin-top: 30px;
+  }
+}
+
+//blogs/new・editページ
+.new-edit-blog {
+  margin: 50px auto;
+  .title {
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+  .btn {
+    margin-top: 30px;
+  }
+}
+
+//blogsページ
+.index-blog {
+  margin: 50px auto;
+  h3 {
+    margin-bottom: 20px;
+  }
+  .blog-record {
+    width: 100%;
+    border-top: thin solid gray;
+    .title {
+      color: black;
+    }
+    .user_name {
+      color: black;
+      .profile_image {
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    }
+  }
+  .recruit-record:last-child {
+    border-bottom: thin solid gray;
+  }
+  .page {
+    margin-top: 20px;
+    display: flex;
+	  justify-content: center;
+	  align-items: center;
+  }
+}
+
+//blogs/idページ
+.show-blog {
+  margin: 50px auto;
+  .table td {
+    word-break : break-all;
+  }
+  .btn {
+    margin-top: 30px;
+  }
+}

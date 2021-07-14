@@ -1,3 +1,15 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :users
+  root to: 'homes#top'
+
+  resources :users, only: [:show, :edit, :update] do
+    patch :withdrawal, on: :collection
+  end
+  resources :recruitments do
+    resources :recruit_comments, only: [:create, :destroy]
+  end
+  resources :blogs do
+    resources :blog_comments, only: [:create, :destroy]
+    resource :blog_likes, only: [:create, :destroy]
+  end
 end

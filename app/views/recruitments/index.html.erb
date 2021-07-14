@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 text-center">
+      <%= render 'users/side-profile' %>
+
+    </div>
+    <div class="col-lg-9 index-recruit">
+      <h3>募集一覧</h3>
+      <% @recruits.each do |recruit| %>
+        <div class="recruit-record">
+          <%= link_to recruitment_path(recruit), class:'title' do %>
+            <%= recruit.title %></br>
+          <% end %>
+          <%= link_to user_path(recruit.user_id), class:'user_name' do %>
+            <%= attachment_image_tag recruit.user, :profile_image,size: '30x30', format:'jpg', fallback:'no_image.png', class:'profile_image' %>
+            <%= recruit.user.name %></br>
+          <% end %>
+          開催日時：<%= recruit.event_date %></br>
+          場所：<%= recruit.prefecture %> / <%= recruit.place %></br>
+
+        </div>
+      <% end %>
+      <div class="page">
+        <%= paginate @recruits %>
+      </div>
+    </div>
+  </div>
+</div>

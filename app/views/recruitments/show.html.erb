@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 text-center">
+      <%= render 'users/side-profile' %>
+
+    </div>
+    <div class="col-lg-9 show-recruit">
+      <h3>募集詳細</h3>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>タイトル</th>
+            <td><%= @recruit.title %></td>
+          </tr>
+          <tr>
+            <th>スポーツ名</th>
+            <td><%= @recruit.sport %></td>
+          </tr>
+          <tr>
+            <th>開催日時</th>
+            <td><%= @recruit.event_date %></td>
+          </tr>
+          <tr>
+            <th>応募締め切り日時</th>
+            <td><%= @recruit.due_date %></td>
+          </tr>
+          <tr>
+            <th>都道府県</th>
+            <td><%= @recruit.prefecture %></td>
+          </tr>
+          <tr>
+            <th>場所</th>
+            <td><%= @recruit.place %></td>
+          </tr>
+          <tr>
+            <th>募集人数</th>
+            <td><%= @recruit.recruit_number %></td>
+          </tr>
+          <tr>
+            <th>募集する人のレベル</th>
+            <td><%= @recruit.level %></td>
+          </tr>
+          <tr>
+            <th>本文</th>
+            <td><%= @recruit.body %></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="text-center">
+        <%= link_to "募集の投稿者にメッセージを送る", root_path, class:'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+</div>

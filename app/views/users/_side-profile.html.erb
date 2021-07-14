@@ -1,0 +1,19 @@
+<div class="side-profile">
+  <%= image_tag attachment_url(@user, :profile_image, fallback: "no_image.png"), size:'70x70', class:"profile_image" %>
+  <table>
+    <tbody>
+      <tr>
+        <td>ニックネーム：</td>
+        <td><%= current_user.name %></td>
+      </tr>
+      <tr>
+        <td>フォロー：</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>フォロワー：</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
