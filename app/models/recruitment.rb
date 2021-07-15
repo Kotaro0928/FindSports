@@ -34,6 +34,6 @@ class Recruitment < ApplicationRecord
 
   enum level:{
     "---":0,
-    初級:1,初級～中級:2,中級:3,中級～上級:4,上級:5,レベル問わず！:6
+    初級:1,初級～中級:2,中級:3,中級～上級:4,上級:5,どなたでも歓迎！:6
   }, _prefix: true
 end

@@ -1,2 +1,18 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-9 user-edit">
+      <h3>プロフィール編集</h3>
+      <%= form_with model:@user, url: user_path(@user), local: true do |f| %>
+        <%= f.label :ニックネーム：, class: 'title' %>
+        <%= f.text_field :name, class: 'form-control enter-field' %>
+        <%= f.label :プロフィール画像：, class: 'title' %>
+        <%= f.attachment_field :profile_image %></br>
+        <%= f.label :自己紹介文：, class: 'title' %>
+        <%= f.text_area :introduction, size: "0x5", class: 'form-control enter-field' %>
+        <div class="text-center">
+          <%= f.submit "プロフィールを更新する", class:'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

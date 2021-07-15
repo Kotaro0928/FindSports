@@ -1,2 +1,80 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-9 profile">
+      <div class="image-btns">
+        <%= attachment_image_tag @user, :profile_image, size: '70x70', format:'jpg', fallback:'no_image.png', class:'profile_image' %>
+        <% if @user == current_user %>
+          <%= link_to "プロフィール編集", edit_user_path(@user), class:'btn btn-primary btn-sm' %>
+        <% else %>
+          <% if %>
+
+          <% else %>
+
+          <% end %>
+        <% end %>
+      </div>
+      <table class="table table-borderless">
+        <tr>
+          <th>ニックネーム</th>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <th>自己紹介文</th>
+          <td><%= @user.introduction %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-9 tab-field">
+      <ul class="tab-list">
+        <li class="tab tab-active">募集</li>
+        <li class="tab">ブログ</li>
+        <li class="tab">フォロー</li>
+        <li class="tab">フォロワー</li>
+      </ul>
+      <div class="tabbox-contents">
+        <div class="tabbox box-show">
+          <ul class="recruit-records">
+            <% @recruits.each do |recruit| %>
+              <li class="recruit-record">
+                <%= link_to recruitment_path(recruit), class:'title' do %>
+                  <%= recruit.title %></br>
+                <% end %>
+                <%= link_to user_path(recruit.user_id), class:'user_name' do %>
+                  <%= attachment_image_tag recruit.user, :profile_image,size: '30x30', format:'jpg', fallback:'no_image.png', class:'profile_image' %>
+                  <%= recruit.user.name %></br>
+                <% end %>
+                <div class="block">
+                  <p>開催日時：<strong><%= recruit.event_date.strftime('%Y/%m/%d %H:%M') %></strong></p>
+                  <p><%= recruit.prefecture %></p>
+                  <p><%= recruit.place %></p>
+                  <div class="spacer"></div>
+                  <p><%= recruit.sport %></p>
+                  <p>募集人数：<%= recruit.recruit_number %>人</p>
+                  <p><%= recruit.level %></p>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="tabbox">
+          <p>タブ2の中身が入ります。</p>
+          <p>タブ2の中身が入ります。</p>
+          <p>タブ2の中身が入ります。</p>
+        </div>
+        <div class="tabbox">
+          <p>タブ3の中身が入ります。</p>
+          <p>タブ3の中身が入ります。</p>
+          <p>タブ3の中身が入ります。</p>
+        </div>
+        <div class="tabbox">
+          <p>タブ4の中身が入ります。</p>
+          <p>タブ4の中身が入ります。</p>
+          <p>タブ4の中身が入ります。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

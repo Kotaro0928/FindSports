@@ -11,4 +11,6 @@ class User < ApplicationRecord
   has_many :blog_comments, dependent: :destroy
 
   attachment :profile_image
+
+  validates :name, presence: true
 end

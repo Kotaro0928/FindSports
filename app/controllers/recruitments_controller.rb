@@ -44,6 +44,9 @@ class RecruitmentsController < ApplicationController
   end
 
   def destroy
+    recruit = Recruitment.find(params[:id])
+    recruit.destroy
+    redirect_to recruitments_path
   end
 
   private

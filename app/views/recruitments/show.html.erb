@@ -5,7 +5,12 @@
 
     </div>
     <div class="col-lg-9 show-recruit">
-      <h3>募集詳細</h3>
+      <div class="show-top">
+        <h3>募集詳細</h3>
+        <% if @recruit.user == current_user %>
+          <%= link_to "募集を削除する", recruitment_path, method: :delete, data: { confirm: "【確認】募集を削除してもよろしいですか？" }, class:'btn btn-danger' %>
+        <% end %>
+      </div>
       <table class="table">
         <tbody>
           <tr>
@@ -13,16 +18,24 @@
             <td><%= @recruit.title %></td>
           </tr>
           <tr>
+            <th>投稿者</th>
+            <td>
+              <%= link_to user_path(@recruit.user_id), class:'user_name' do %>
+                <%= attachment_image_tag @recruit.user, :profile_image, size: '30x30', format:'jpg', fallback:'no_image.png', class:'profile_image' %>
+                <%= @recruit.user.name %></br>
+              <% end %>
+            </td>
+          <tr>
             <th>スポーツ名</th>
             <td><%= @recruit.sport %></td>
           </tr>
           <tr>
             <th>開催日時</th>
-            <td><%= @recruit.event_date %></td>
+            <td><%= @recruit.event_date.strftime('%Y/%m/%d %H:%M') %></td>
           </tr>
           <tr>
             <th>応募締め切り日時</th>
-            <td><%= @recruit.due_date %></td>
+            <td><%= @recruit.due_date.strftime('%Y/%m/%d %H:%M') %></td>
           </tr>
           <tr>
             <th>都道府県</th>
@@ -48,7 +61,7 @@
       </table>
 
       <div class="text-center">
-        <%= link_to "募集の投稿者にメッセージを送る", root_path, class:'btn btn-primary' %>
+        <%= link_to "募集の投稿者にメッセージを送る", root_path, class:'btn btn-info' %>
       </div>
     </div>
   </div>

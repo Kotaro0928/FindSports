@@ -1,5 +1,10 @@
 @import "bootstrap";
 
+//body全体
+body {
+  font-size: 90%;
+}
+
 // header
 .navbar-brand {
   background: url("logo.png") no-repeat center;
@@ -25,7 +30,7 @@
 .devise_block {
   width: 30%;
   margin: 30px auto;
-  border: medium groove gray;
+  border: medium solid #CCC;
   h3 {
     margin: 30px 0;
     text-align: center;
@@ -77,7 +82,7 @@
 // topページ
 .top_image1 {
   width: 100%;
-  height: 400px;
+  height: 600px;
 }
 
 //side-profile部分
@@ -104,25 +109,13 @@
 //recruitmentsページ
 .index-recruit {
   margin: 50px auto;
-  h3 {
+  .index-top {
     margin-bottom: 20px;
-  }
-  .recruit-record {
-    width: 100%;
-    border-top: thin solid gray;
-    .title {
-      color: black;
+    display: flex;
+    justify-content: flex-end;
+    h3 {
+      margin-right: auto;
     }
-    .user_name {
-      color: black;
-      .profile_image {
-        border-radius: 50%;
-        object-fit: cover;
-      }
-    }
-  }
-  .recruit-record:last-child {
-    border-bottom: thin solid gray;
   }
   .page {
     margin-top: 20px;
@@ -131,17 +124,63 @@
 	  align-items: center;
   }
 }
+.recruit-records {
+  list-style: none;
+  padding: 0;
+  .recruit-record {
+    padding: 7px 0;
+  }
+}
+.recruit-records > li {
+  width: 100%;
+  border-top: thin solid gray;
+  .title {
+    color: black;
+    font-weight: bold;
+  }
+  .profile_image {
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .block {
+    display: flex;
+    flex-wrap: wrap;
+    p {
+      margin: 5px 5px 0 5px;
+      border: thin solid gray;
+      border-radius: 5px;
+      color: #444444;
+    }
+    .spacer {
+      width: 100%;
+    }
+  }
+}
+.recruit-records > li:last-child {
+  border-bottom: thin solid gray;
+}
 
 //recruitments/idページ
 .show-recruit {
   margin: 50px auto;
+  .show-top {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+    h3 {
+      margin-right: auto;
+    }
+  }
   .table {
     height: 35vh;
+  }
+  th {
+    width:180px;
   }
   .table td {
     word-break : break-all;
   }
-  .btn {
+  .btn-primary {
     margin-top: 30px;
   }
 }
@@ -161,24 +200,43 @@
 //blogsページ
 .index-blog {
   margin: 50px auto;
-  h3 {
+  .index-top {
     margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+    h3 {
+      margin-right: auto;
+    }
   }
-  .blog-record {
+  .blog-records {
+    list-style: none;
+    padding: 0;
+    .blog-record {
+      padding: 7px 0;
+    }
+  }
+  .blog-records > li {
     width: 100%;
     border-top: thin solid gray;
     .title {
       color: black;
+      font-weight: bold;
     }
-    .user_name {
-      color: black;
-      .profile_image {
-        border-radius: 50%;
-        object-fit: cover;
+    .profile_image {
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .block {
+      display: flex;
+      p {
+        margin: 5px 5px 0 5px;
+        border: thin solid gray;
+        border-radius: 5px;
+        color: #444444;
       }
     }
   }
-  .recruit-record:last-child {
+  .blog-records > li:last-child {
     border-bottom: thin solid gray;
   }
   .page {
@@ -192,8 +250,107 @@
 //blogs/idページ
 .show-blog {
   margin: 50px auto;
+  .show-top {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+    h3 {
+      margin-right: auto;
+    }
+  }
+  .table th {
+    width:120px;
+  }
   .table td {
     word-break : break-all;
+  }
+  .profile_image {
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .like {
+    margin-top: 60px;
+    text-align: left;
+    span {
+      margin: 0 50px;
+    }
+  }
+  .new-comment {
+    margin-top: 5px;
+    text-align: center;
+    .btn {
+      margin-top: 10px;
+    }
+  }
+  .comments {
+    margin: 30px 0;
+    td:nth-child(1) {
+      width: 20%;
+    }
+    td:nth-child(2) {
+      width: 60%;
+    }
+    td:nth-child(3) {
+      width: 20%;
+    }
+  }
+}
+
+//user/idページ
+.profile {
+  margin: 50px auto;
+  .image-btns {
+    text-align: left;
+    .profile_image {
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+  .table th {
+    width: 130px;
+  }
+}
+.tab-field {
+  margin: 0 auto 50px auto;
+  padding: 0;
+  border: thin solid #ccc;
+  .tab-list {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    list-style: none;
+    padding: 0;
+    .tab {
+      width: 100%;
+      padding: 10px;
+      cursor: pointer;
+      border-left: solid 1px #CCC;
+      border-bottom: solid 1px #CCC;
+    }
+    .tab:first-child {
+      border-left: none;
+    }
+    .tab-active {
+      color: #FFF;
+      background: #19b5d1;
+      transition: all 0.5s ease-in-out;
+    }
+  }
+  .tabbox {
+    display: none;
+    padding: 15px;
+  }
+  .box-show {
+    display: block;
+  }
+}
+
+//user/editページ
+.user-edit {
+  margin: 50px auto;
+  .title {
+    margin-top: 20px;
+    margin-bottom: 0;
   }
   .btn {
     margin-top: 30px;

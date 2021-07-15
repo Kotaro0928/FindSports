@@ -68,9 +68,6 @@ gem 'devise-i18n-views'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 
-gem 'redcarpet', '~> 2.3.0'
-gem 'carrierwave', '~> 1.0'
-
 gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
 

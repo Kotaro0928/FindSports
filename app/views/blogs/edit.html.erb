@@ -5,7 +5,7 @@
 
     </div>
     <div class="col-lg-9 new-edit-blog">
-      <h3>新規ブログの作成</h3>
+      <h3>ブログの編集</h3>
       <%= form_with model:@blog, url: blog_path(@blog), local: true do |f| %>
         <%= f.label :タイトル：, class: 'title' %></br>
         <%= f.text_field :title, class: 'form-control enter-field' %>

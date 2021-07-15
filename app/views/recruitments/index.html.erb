@@ -5,21 +5,32 @@
 
     </div>
     <div class="col-lg-9 index-recruit">
-      <h3>募集一覧</h3>
-      <% @recruits.each do |recruit| %>
-        <div class="recruit-record">
-          <%= link_to recruitment_path(recruit), class:'title' do %>
-            <%= recruit.title %></br>
-          <% end %>
-          <%= link_to user_path(recruit.user_id), class:'user_name' do %>
-            <%= attachment_image_tag recruit.user, :profile_image,size: '30x30', format:'jpg', fallback:'no_image.png', class:'profile_image' %>
-            <%= recruit.user.name %></br>
-          <% end %>
-          開催日時：<%= recruit.event_date %></br>
-          場所：<%= recruit.prefecture %> / <%= recruit.place %></br>
-
-        </div>
-      <% end %>
+      <div class="index-top">
+        <h3>募集一覧</h3>
+        <%= link_to "新しく募集を作る", new_recruitment_path, class:'btn btn-success' %>
+      </div>
+      <ul class="recruit-records">
+        <% @recruits.each do |recruit| %>
+          <li class="recruit-record">
+            <%= link_to recruitment_path(recruit), class:'title' do %>
+              <%= recruit.title %></br>
+            <% end %>
+            <%= link_to user_path(recruit.user_id), class:'user_name' do %>
+              <%= attachment_image_tag recruit.user, :profile_image,size: '30x30', format:'jpg', fallback:'no_image.png', class:'profile_image' %>
+              <%= recruit.user.name %></br>
+            <% end %>
+            <div class="block">
+              <p>開催日時：<strong><%= recruit.event_date.strftime('%Y/%m/%d %H:%M') %></strong></p>
+              <p><%= recruit.prefecture %></p>
+              <p><%= recruit.place %></p>
+              <div class="spacer"></div>
+              <p><%= recruit.sport %></p>
+              <p>募集人数：<%= recruit.recruit_number %>人</p>
+              <p><%= recruit.level %></p>
+            </div>
+          </li>
+        <% end %>
+      </ul>
       <div class="page">
         <%= paginate @recruits %>
       </div>
