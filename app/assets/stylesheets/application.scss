@@ -7,7 +7,7 @@ body {
 
 // header
 .navbar-brand {
-  background: url("logo.png") no-repeat center;
+  background: image-url("logo.png") no-repeat center;
   background-size: contain;
   height: 40px;
   width: 150px;
@@ -117,12 +117,6 @@ body {
       margin-right: auto;
     }
   }
-  .page {
-    margin-top: 20px;
-    display: flex;
-	  justify-content: center;
-	  align-items: center;
-  }
 }
 .recruit-records {
   list-style: none;
@@ -158,6 +152,13 @@ body {
 }
 .recruit-records > li:last-child {
   border-bottom: thin solid gray;
+}
+
+.page {
+  margin-top: 20px;
+  display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 //recruitments/idページ
@@ -208,43 +209,44 @@ body {
       margin-right: auto;
     }
   }
-  .blog-records {
-    list-style: none;
-    padding: 0;
-    .blog-record {
-      padding: 7px 0;
-    }
+}
+
+.blog-records {
+  list-style: none;
+  padding: 0;
+  .blog-record {
+    padding: 7px 0;
   }
-  .blog-records > li {
-    width: 100%;
-    border-top: thin solid gray;
-    .title {
-      color: black;
-      font-weight: bold;
-    }
-    .profile_image {
-      border-radius: 50%;
-      object-fit: cover;
-    }
-    .block {
-      display: flex;
-      p {
-        margin: 5px 5px 0 5px;
-        border: thin solid gray;
-        border-radius: 5px;
-        color: #444444;
-      }
-    }
+}
+.blog-records > li {
+  width: 100%;
+  border-top: thin solid gray;
+  .title {
+    color: black;
+    font-weight: bold;
   }
-  .blog-records > li:last-child {
-    border-bottom: thin solid gray;
+  .profile_image {
+    border-radius: 50%;
+    object-fit: cover;
   }
-  .page {
-    margin-top: 20px;
+  .block {
     display: flex;
-	  justify-content: center;
-	  align-items: center;
+    p {
+      margin: 5px 5px 0 5px;
+      border: thin solid gray;
+      border-radius: 5px;
+      color: #444444;
+    }
   }
+}
+.blog-records > li:last-child {
+  border-bottom: thin solid gray;
+}
+.page {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 //blogs/idページ

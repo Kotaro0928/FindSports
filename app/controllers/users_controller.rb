@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @recruits = @user.recruitments
+    @recruits = @user.recruitments.order("id DESC").page(params[:page]).per(10)
+    @blogs = @user.blogs.order("id DESC").page(params[:page]).per(1)
   end
 
   def edit
