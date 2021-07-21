@@ -1,0 +1,39 @@
+<div class="side-profile">
+  <%= image_tag attachment_url(current_user, :profile_image, fallback: "no_image.png"), size:'70x70', class:"profile_image" %>
+  <table class="table table-borderless table-sm mt-2">
+    <tbody>
+      <tr>
+        <% if user_signed_in? %>
+          <th colspan="2"><%= current_user.name %></th>
+        <% else %>
+          <th colspan="2">ゲスト</th>
+        <% end %>
+      </tr>
+      <tr>
+        <th>フォロー：</th>
+        <% if user_signed_in? %>
+          <td><%= current_user.followings.count %></td>
+        <% else %>
+          <td>0</td>
+        <% end %>
+      </tr>
+      <tr>
+        <th>フォロワー：</th>
+        <% if user_signed_in? %>
+          <td><%= current_user.followers.count %></td>
+        <% else %>
+          <td>0</td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+  <div class="side-btn">
+    <% if user_signed_in? %>
+      <%= link_to "マイページ", user_path(current_user), class: 'btn btn-primary btn-sm'%>
+    <% else %>
+      <%= link_to ' 新規登録', new_user_registration_path, class: 'btn btn-primary btn-sm' %>
+    <% end %>
+  </div>
+</div>
+
+<%= render 'searchs/form' %>

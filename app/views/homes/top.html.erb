@@ -1,64 +1,148 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-lg-12 px-0">
-      <%= image_tag asset_path('top_image1.jpeg'), class:"top_image1" %>
+<div class="top-backimage">
+  <div class="bg-mask">
+  <div class="video">
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light" >
+        <a class="navbar-brand" href="/"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+              <li><%= link_to ' 募集一覧',recruitments_path,class: 'nav-link text-secondary font-weight-bold' %></li>
+              <li><%= link_to ' ブログ一覧',blogs_path,class: 'nav-link text-secondary font-weight-bold' %></li>
+              <li><%= link_to ' マイページ',user_path(current_user),class: 'nav-link text-secondary font-weight-bold'%></li>
+              <li><%= link_to ' ログアウト', destroy_user_session_path, method: :delete,class: 'nav-link text-secondary font-weight-bold' %></li>
+            <% else %>
+              <li><%= link_to ' 募集一覧',recruitments_path,class: 'nav-link text-secondary font-weight-bold' %></li>
+              <li><%= link_to ' ブログ一覧',blogs_path, class: 'nav-link text-secondary font-weight-bold' %></li>
+              <li><%= link_to ' 新規登録', new_user_registration_path, class: 'nav-link text-secondary font-weight-bold' %></li>
+              <li><%= link_to ' ログイン', new_user_session_path, class: 'nav-link text-secondary font-weight-bold'%></li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div class="text-center">
+      <% flash.each do |key, value| %>
+        <p class="alert alert-<%= key %>">
+          <%= value %>
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </p>
+      <% end %>
+    </div>
+    <%= video_tag("/assets/videos/top-video.mp4", autoplay: true, loop: true, muted: true, style: "width:100%; height:100%;") %>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 text-center">
+        <div class="side-profile">
+          <%= image_tag attachment_url(current_user, :profile_image, fallback: "no_image.png"), size:'70x70', class:"profile_image" %>
+          <table class="table table-borderless table-sm mt-2">
+            <tbody>
+              <tr>
+                <% if user_signed_in? %>
+                  <th colspan="2", class="text-white font-weight-bold"><%= current_user.name %></th>
+                 <% else %>
+                  <th colspan="2", class="text-white font-weight-bold">ゲスト</th>
+                 <% end %>
+               </tr>
+               <tr>
+                 <th class="text-white font-weight-bold">フォロー：</th>
+                 <% if user_signed_in? %>
+                   <td class="text-white font-weight-bold"><%= current_user.followings.count %></td>
+                 <% else %>
+                   <td class="text-white font-weight-bold">0</td>
+                 <% end %>
+              </tr>
+              <tr>
+                <th class="text-white font-weight-bold">フォロワー：</th>
+                <% if user_signed_in? %>
+                  <td class="text-white font-weight-bold"><%= current_user.followers.count %></td>
+                 <% else %>
+                   <td class="text-white font-weight-bold">0</td>
+                <% end %>
+               </tr>
+             </tbody>
+           </table>
+           <div class="side-btn">
+            <% if user_signed_in? %>
+               <%= link_to "マイページ", user_path(current_user), class: 'btn btn-primary btn-sm'%>
+            <% else %>
+              <%= link_to ' 新規登録', new_user_registration_path, class: 'btn btn-primary btn-sm' %>
+            <% end %>
+          </div>
+        </div>
+        <%= render 'searchs/form' %>
+      </div>
+      <div class="col-lg-9 mt-5">
+        <div class="row">
+          <div class="col-lg-6 p-0">
+            <%= image_tag asset_path("basketball.jpg"), style: "width:100%; height:100%;" %>
+          </div>
+          <div class="col-lg-6 p-0 d-flex align-items-center justify-content-center">
+            <p class="main-image1-text text-white font-weight-bold">
+              Find Sportsでは共に</br>
+              スポーツを楽しむ仲間を</br>
+              見つけることができます
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 p-0 d-flex align-items-center justify-content-center">
+            <p class="main-image1-text text-white font-weight-bold">
+              募集から仲間を探して</br>
+              あなたもスポーツを</br>
+              楽しみましょう！
+            </p>
+          </div>
+          <div class="col-lg-6 p-0">
+            <%= image_tag asset_path("baseball.jpg"), style: "width:100%; height:100%;" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 p-0">
+            <%= image_tag asset_path("skatebord.jpg"), style: "width:100%; height:100%;" %>
+          </div>
+          <div class="col-lg-6 p-0 d-flex align-items-center justify-content-center">
+            <p class="main-image1-text text-white font-weight-bold">
+              さぁ！</br>
+              早速募集を見てみましょう！
+            </p>
+          </div>
+        </div>
+        <div class="row mt-5 mb-5">
+          <div class="col-lg-10 mx-auto">
+            <div class="text-center">
+              <h4 class="border-bottom pb-2 text-white font-weight-bold">新着募集</h4>
+              <% @recruits.each do |recruit| %>
+                <p>
+                  <%= link_to recruitment_path(recruit), class:"text-white font-weight-bold" do %>
+                    <%= recruit.title %>
+                  <% end %>
+                </p>
+              <% end %>
+              <p class="text-white font-weight-bold"><%= link_to "--もっと見る--", recruitments_path, class:"text-white font-weight-bold" %></p>
+            </div>
+          </div>
+          <div class="col-lg-10 mx-auto mt-5">
+            <div class="text-center">
+              <h4 class="border-bottom pb-2 text-white font-weight-bold">新着ブログ</h4>
+              <% @blogs.each do |blog| %>
+                <p>
+                  <%= link_to blog_path(blog), class:"text-white font-weight-bold" do %>
+                    <%= blog.title %>
+                  <% end %>
+                </p>
+              <% end %>
+              <p class="text-white font-weight-bold"><%= link_to "--もっと見る--", blogs_path, class:"text-white font-weight-bold" %></p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col-lg-3 text-center">
-      <%= render 'users/side-profile' %>
-
-    </div>
-    <div class="col-lg-9">
-      <div class="row">
-        <div class="col-lg-6">
-        </div>
-        <div class="col-lg-6">
-          <p class="main-image1-text text-center text-align-center">
-            Find Sportsでは共に</br>
-            スポーツを楽しむ仲間を</br>
-            見つけることができます
-          </p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-6">
-          <p class="main-image1-text text-center text-align-center">
-            募集から仲間を探して</br>
-            あなたもスポーツを</br>
-            楽しみましょう！
-          </p>
-        </div>
-        <div class="col-lg-6">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-6">
-        </div>
-        <div class="col-lg-6">
-          <p class="main-image1-text text-center text-align-center">
-            さぁ！</br>
-            早速募集を見てみましょう！
-          </p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <h5>新着募集</h4>
-          <p></p>
-          <p></p>
-          <p></p>
-        </div>
-        <div class="col-lg-12">
-          <h5>新着ブログ</h4>
-          <p></p>
-          <p></p>
-          <p></p>
-        </div>
-      </div>
-    </div>
   </div>
 </div>

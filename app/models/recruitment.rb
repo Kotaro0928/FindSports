@@ -1,5 +1,4 @@
 class Recruitment < ApplicationRecord
-  has_many :recruit_comments, dependent: :destroy
   belongs_to :user
 
   validates :title, presence: true

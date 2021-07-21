@@ -1,0 +1,28 @@
+<% if @model == 'user' %>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9 mx-auto my-5">
+        <h3 class="mb-4">【会員の検索結果】検索ワード：<%= @content %></h3>
+        <%= render 'users/index', users: @records.page(params[:page]).per(10) %>
+      </div>
+    </div>
+  </div>
+<% elsif @model == 'recruit' %>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9 mx-auto my-5">
+        <h3 class="mb-4">【募集の検索結果】検索ワード：<%= @content %></h3>
+        <%= render 'recruitments/index', recruits: @records.page(params[:page]).per(10) %>
+      </div>
+    </div>
+  </div>
+<% elsif @model == 'blog' %>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9 mx-auto my-5">
+        <h3 class="mb-4">【ブログの検索結果】検索ワード：<%= @content %></h3>
+        <%= render 'blogs/index', blogs: @records.page(params[:page]).per(10) %>
+      </div>
+    </div>
+  </div>
+<% end %>

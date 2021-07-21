@@ -1,10 +1,5 @@
 @import "bootstrap";
 
-//body全体
-body {
-  font-size: 90%;
-}
-
 // header
 .navbar-brand {
   background: image-url("logo.png") no-repeat center;
@@ -80,18 +75,40 @@ body {
 }
 
 // topページ
-.top_image1 {
-  width: 100%;
-  height: 600px;
+.top-backimage {
+  background-image: url(top-backimage.jpg);
+  background-size:  cover;
+}
+.bg-mask {
+  height: 100%;
+  background: rgba(255,255,255,0.2);
+}
+.video {
+  position: relative;
+  header {
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    background: rgba(255,255,255,0.4);
+  }
+  .alert {
+    position: absolute;
+    top: 55px;
+    width: 100%;
+    z-index: 1;
+  }
 }
 
-//side-profile部分
+//sidebar部分
 .side-profile {
   margin: 50px auto;
-  .profile_image {
-    border-radius: 50%;
-    object-fit: cover;
+  td {
+    width: 100px;
   }
+}
+.profile_image {
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 //recruitments/new・editページ
@@ -303,14 +320,36 @@ body {
   margin: 50px auto;
   .image-btns {
     text-align: left;
+    position: relative;
+    height: 100px;
     .profile_image {
       border-radius: 50%;
       object-fit: cover;
+      position: absolute;
+      left: 70px;
     }
+    .profile-edit-btn {
+      position: absolute;
+      top: 20px;
+      right: 70px;
+    }
+    .chat-btn {
+      position: absolute;
+      top: 20px;
+      right: 250px;
+    }
+  }
+  .table {
+    margin-top: 30px;
   }
   .table th {
     width: 130px;
   }
+}
+.follow-btn {
+  position: absolute;
+  top: 20px;
+  right: 70px;
 }
 .tab-field {
   margin: 0 auto 50px auto;
@@ -356,5 +395,103 @@ body {
   }
   .btn {
     margin-top: 30px;
+  }
+}
+
+//rooms/:idページ
+.partner-name {
+  width: 100%;
+  height: 50px;
+  margin: 0 auto;
+  background: #66FF99;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.chat-area {
+  margin: 0 auto;
+  width: 100%;
+  height: 500px;
+  text-align: right;
+  font-size: 14px;
+  oveflow: hidden;
+  overflow-y: scroll;
+}
+.mycomment {
+  margin: 10px 0;
+}
+.mycomment p {
+  display: inline-block;
+  position: relative;
+  margin: 0 10px 0 0;
+  padding: 8px;
+  max-width: 50%;
+  border-radius: 12px;
+  background: #30e852;
+  font-size: 15px;
+  word-break: break-all;
+  text-align-last: left;
+}
+.mycomment p:after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  right: -19px;
+  border: 8px solid transparent;
+  border-left: 18px solid #30e852;
+  -webkit-transform: rotate(-35deg);
+  transform: rotate(-35deg);
+}
+.fukidasi {
+  margin: 15px 0;
+}
+.fukidasi .faceicon {
+  float: left;
+  margin-right: -50px;
+  width: 40px;
+}
+.fukidasi .faceicon img{
+  width: 90%;
+  height: auto;
+}
+.fukidasi .chatting {
+  width: 100%;
+  text-align: left;
+}
+.says {
+  display: inline-block;
+  position: relative;
+  margin: 0 0 0 50px;
+  padding: 10px;
+  max-width: 50%;
+  border-radius: 12px;
+  background: #edf1ee;
+}
+.says:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 3px;
+  left: -19px;
+  border: 8px solid transparent;
+  border-right: 18px solid #edf1ee;
+  -webkit-transform: rotate(35deg);
+  transform: rotate(35deg);
+}
+.says p {
+  margin: 0;
+}
+.message-form {
+  margin-top: 30px;
+  position: relative;
+  .field {
+    width: 80%;
+    display: inline-block;
+    margin-right: 10px;
+  }
+  .button {
+    display: inline-block;
+    position: absolute;
+    bottom: 30px;
   }
 }

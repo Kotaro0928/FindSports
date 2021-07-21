@@ -5,7 +5,17 @@ class RecruitmentsController < ApplicationController
 
   def show
     @recruit = Recruitment.find(params[:id])
-    @recruit_comment = RecruitComment.new
+
+    # DM機能
+    @exist_room = true
+    if Room.where(user1_id: current_user.id, user2_id: @recruit.user_id).exists?
+      @room = Room.where(user1_id: current_user.id, user2_id: @recruit.user_id)
+    elsif Room.where(user1_id: @recruit.user_id, user2_id: current_user.id).exists?
+      @room = Room.where(user1_id: @recruit.user_id, user2_id: current_user.id)
+    else
+      @room = Room.new
+      @exist_room = false
+    end
   end
 
   def new
