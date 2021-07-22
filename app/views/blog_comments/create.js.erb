@@ -1,0 +1,3 @@
+$('#like_button_<%= @blog.id %>').html("<%= j(render partial: 'blogs/like', locals: {blog: @blog}) %>");
+$('#comments').html("<%= j(render partial: 'blog_comments/comments', locals: { blog: @blog }) %>");
+$("#blog_comment_comment").val('')
