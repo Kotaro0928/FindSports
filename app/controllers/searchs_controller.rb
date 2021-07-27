@@ -11,7 +11,7 @@ class SearchsController < ApplicationController
     if model == 'user'
       User.where('name LIKE ?', '%'+content+'%')
     elsif model == 'recruit'
-      Recruitment.where('title LIKE ?', '%'+content+'%')
+      Recruitment.where(['title LIKE  ?', '%'+content+'%' ])
     elsif model == 'blog'
       Blog.where('title LIKE ?', '%'+content+'%')
     end

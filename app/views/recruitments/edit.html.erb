@@ -5,7 +5,7 @@
     </div>
     <div class="col-lg-9 new-edit-recruit">
       <h3>募集の編集</h3>
-      <%= form_with model:@recruit, url: recruitment_path(@recrui), local: true do |f| %>
+      <%= form_with model:@recruit, url: recruitment_path(@recruit), local: true do |f| %>
         <%= f.label :タイトル：, class: 'title' %></br>
         <%= f.text_field :title, class: 'form-control enter-field' %>
         <%= f.label :スポーツ名：, class: 'title' %></br>

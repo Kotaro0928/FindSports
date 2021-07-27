@@ -1,5 +1,5 @@
 <ul class="blog-records">
-  <% blogs.each do |blog| %>
+  <% blogs.order("id DESC").each do |blog| %>
     <li class="blog-record">
       <%= link_to blog_path(blog), class:'title' do %>
         <%= blog.title %></br>

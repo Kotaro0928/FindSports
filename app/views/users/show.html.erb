@@ -2,20 +2,22 @@
   <div class="row">
     <div class="col-lg-9 profile">
       <div class="image-btns">
-        <%= attachment_image_tag @user, :profile_image, size: '70x70', format:'jpg', fallback:'no_image.png', class:'profile_image' %>
-        <% if @user == current_user %>
-          <%= link_to "プロフィール編集", edit_user_path(@user), class:'btn btn-primary btn-sm profile-edit-btn' %>
-        <% else %>
-          <span id='follow-button_#{ user.id }'>
-            <%= render 'users/follow-button', user: @user %>
-          </span>
-          <% if @exist_room == true %>
-            <%= link_to "メッセージを送る", room_path(@room.ids), class:'btn btn-info btn-sm chat-btn' %>
+        <%= attachment_image_tag @user, :profile_image, size: '100x100', format:'jpg', fallback:'no_image.png', class:'profile_image' %>
+        <% if user_signed_in? %>
+          <% if @user == current_user %>
+            <%= link_to "プロフィール編集", edit_user_path(@user), class:'btn btn-primary btn-sm profile-edit-btn' %>
           <% else %>
-            <%= form_with model:@room, url: rooms_path, local: true do |f| %>
-              <%= f.hidden_field :user1_id, :value => current_user.id %>
-              <%= f.hidden_field :user2_id, :value => @user.id %>
-              <%= f.submit "メッセージを送る", class:'btn btn-info btn-sm chat-btn' %>
+            <span id='follow-button_#{ user.id }'>
+              <%= render 'users/follow-button', user: @user %>
+            </span>
+            <% if @exist_room == true %>
+              <%= link_to "メッセージを送る", room_path(@room.ids), class:'btn btn-info btn-sm chat-btn' %>
+            <% else %>
+              <%= form_with model:@room, url: rooms_path, local: true do |f| %>
+                <%= f.hidden_field :user1_id, :value => current_user.id %>
+                <%= f.hidden_field :user2_id, :value => @user.id %>
+                <%= f.submit "メッセージを送る", class:'btn btn-info btn-sm chat-btn' %>
+              <% end %>
             <% end %>
           <% end %>
         <% end %>
@@ -40,8 +42,10 @@
         <li class="tab">ブログ<%= @blogs.count %>件</li>
         <li class="tab", id="following-count_#{ user.id }">フォロー<%= @followings.count %>人</li>
         <li class="tab", id="follower-count_#{ user.id }">フォロワー<%= @followers.count %>人</li>
-        <% if @user.id == current_user.id %>
-          <li class="tab">チャット<%= @rooms.count %>件</li>
+        <% if user_signed_in? %>
+          <% if @user.id == current_user.id %>
+            <li class="tab">チャット<%= @rooms.count %>件</li>
+          <% end %>
         <% end %>
       </ul>
       <div class="tabbox-contents">
@@ -130,29 +134,31 @@
             <%= paginate @followers %>
           </div>
         </div>
-        <% if @user.id == current_user.id %>
-        <div class="tabbox">
-          <table class="table table-borderless table-sm">
-            <% @rooms.each do |room| %>
-              <% if room.user1_id == current_user.id %>
-                <% partner = room.user2 %>
-              <% else %>
-                <% partner = room.user1 %>
-              <% end %>
-              <tr>
-                <td>
-                  <%= link_to room_path(room.id), class:'user_name' do %>
-                    <%= attachment_image_tag partner, :profile_image, size: '30x30', format:'jpg', fallback:'no_image.png', class:'profile_image' %>
-                    <%= partner.name %></br>
+        <% if user_signed_in? %>
+          <% if @user.id == current_user.id %>
+            <div class="tabbox">
+              <table class="table table-borderless table-sm">
+                <% @rooms.each do |room| %>
+                  <% if room.user1_id == current_user.id %>
+                    <% partner = room.user2 %>
+                  <% else %>
+                    <% partner = room.user1 %>
                   <% end %>
-                </td>
-              </tr>
-            <% end %>
-          </table>
-          <div class="page">
-            <%= paginate @followers %>
-          </div>
-        </div>
+                  <tr>
+                    <td>
+                      <%= link_to room_path(room.id), class:'user_name' do %>
+                        <%= attachment_image_tag partner, :profile_image, size: '30x30', format:'jpg', fallback:'no_image.png', class:'profile_image' %>
+                        <%= partner.name %></br>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </table>
+              <div class="page">
+                <%= paginate @followers %>
+              </div>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>

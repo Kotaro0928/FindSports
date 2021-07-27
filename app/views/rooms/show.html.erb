@@ -9,30 +9,11 @@
         <% end %>
       </div>
       <div class="chat-area">
-        <% @chats.each do |chat|%>
-          <%if chat.user_id == current_user.id%>
-            <div class="mycomment">
-              <p><%= chat.message %></p>
-            </div>
-          <%else%>
-            <div class="fukidasi">
-              <div class="faceicon">
-                <%= link_to user_path(chat.user_id), class:'user_name' do %>
-                  <%= attachment_image_tag chat.user, :profile_image, size: '30x30', format:'jpg', fallback:'no_image.png', class:'profile_image' %>
-                <% end %>
-              </div>
-              <div class="chatting">
-                <div class="says">
-                  <p><%= chat.message %></p>
-                </div>
-              </div>
-            </div>
-          <%end%>
-        <%end%>
+        <%= render partial: 'chats/index', locals: { chats: @chats } %>
       </div>
 
       <div class="message-form">
-        <%= form_with model:@chat, url: chats_path, local: true do |f| %>
+        <%= form_with model:@chat, url: chats_path do |f| %>
           <div class="field">
             <%= f.text_area :message, size: "0x3", placeholder: "コメントを入力", class: 'form-control enter-field' %>
           </div>

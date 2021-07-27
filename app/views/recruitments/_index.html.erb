@@ -1,5 +1,5 @@
 <ul class="recruit-records">
-  <% recruits.each do |recruit| %>
+  <% recruits.order("id DESC").each do |recruit| %>
     <li class="recruit-record">
       <%= link_to recruitment_path(recruit), class:'title' do %>
         <%= recruit.title %></br>

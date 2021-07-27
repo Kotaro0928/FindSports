@@ -7,6 +7,7 @@
       <div class="show-top">
         <h3>ブログ詳細</h3>
         <% if @blog.user == current_user %>
+          <%= link_to "募集を編集する", edit_blog_path(@blog), class:'btn btn-info edit-btn' %>
           <%= link_to "ブログを削除する", blog_path, method: :delete, data: { confirm: "【確認】ブログを削除してもよろしいですか？" }, class:'btn btn-danger' %>
         <% end %>
       </div>
@@ -38,15 +39,16 @@
 
       <div class="like", id="like_button_<%= @blog.id %>">
         <%= render partial: 'blogs/like', locals: { blog: @blog } %>
-        
       </div>
 
-      <div class="new-comment">
-        <%= form_with model: [@blog, @blog_comment] do |f| %>
-          <%= f.text_area :comment, rows:'5',placeholder: "コメントを書く", class: 'form-control' %>
-          <%= f.submit "コメントする", class:'btn btn-info' %>
-        <% end %>
-      </div>
+      <% if user_signed_in? %>
+        <div class="new-comment">
+          <%= form_with model: [@blog, @blog_comment] do |f| %>
+            <%= f.text_area :comment, rows:'5',placeholder: "コメントを書く", class: 'form-control' %>
+            <%= f.submit "コメントする", class:'btn btn-info' %>
+          <% end %>
+        </div>
+      <% end %>
       <table class="table table-borderless table-sm comments", id="comments">
         <%= render partial: 'blog_comments/comments', locals: { blog: @blog } %>
       </table>

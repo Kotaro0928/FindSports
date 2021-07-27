@@ -1,4 +1,6 @@
 class BlogCommentsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     @blog = Blog.find(params[:blog_id])
     @blog_comment = current_user.blog_comments.new(blog_comment_params)

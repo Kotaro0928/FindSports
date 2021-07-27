@@ -1,4 +1,6 @@
 class BlogLikesController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     @blog = Blog.find(params[:blog_id])
     like = current_user.blog_likes.new(blog_id: @blog.id)

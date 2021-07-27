@@ -1,14 +1,21 @@
-<% if blog.liked_by?(current_user) %>
-  <span>
-    <%= link_to blog_blog_likes_path(blog), method: :delete, remote: true do %>
-      <i class="fas fa-thumbs-up"></i> <%= blog.blog_likes.count %> いいね
-    <% end %>
-  </span>
-<% else %>
+<% if user_signed_in? %>
+  <% if blog.liked_by?(current_user) %>
+    <span>
+      <%= link_to blog_blog_likes_path(blog), method: :delete, remote: true do %>
+        <i class="fas fa-thumbs-up"></i> <%= blog.blog_likes.count %> いいね
+      <% end %>
+    </span>
+  <% else %>
     <span>
       <%= link_to blog_blog_likes_path(blog), method: :post, remote: true do %>
         <i class="far fa-thumbs-up"></i> <%= blog.blog_likes.count %> いいね
       <% end %>
     </span>
+  <% end %>
+  <span>コメント件数：<%= @blog.blog_comments.count %></span>
+<% else %>
+  <span>
+    <i class="fas fa-thumbs-up"></i> <%= blog.blog_likes.count %> いいね
+  </span>
+  <span>コメント件数：<%= @blog.blog_comments.count %></span>
 <% end %>
-<span>コメント件数：<%= @blog.blog_comments.count %></span>

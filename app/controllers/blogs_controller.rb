@@ -1,4 +1,7 @@
 class BlogsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+
   def index
     @blogs = Blog.all.order("id DESC").page(params[:page]).per(10)
   end
@@ -34,7 +37,7 @@ class BlogsController < ApplicationController
     blog = Blog.find(params[:id])
     if blog.update(blog_params)
       flash[:success] = "ブログを更新しました。"
-      redirect_to blogs_path
+      redirect_to blog_path(blog)
     else
       unless blog.valid?
         flash[:danger] = "ブログ内容を正しく入力してください。"
@@ -53,5 +56,12 @@ class BlogsController < ApplicationController
 
   def blog_params
     params.require(:blog).permit(:title, :sport, :body)
+  end
+
+  def ensure_correct_user
+    @blog = Blog.find(params[:id])
+    unless @blog.user == current_user
+      redirect_to blogs_path
+    end
   end
 end

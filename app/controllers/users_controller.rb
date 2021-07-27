@@ -1,25 +1,31 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!,except: [:show]
+  before_action :ensure_correct_user, only: [:edit, :update, :withdrawal]
+
   def show
     @user = User.find(params[:id])
     @recruits = @user.recruitments.order("id DESC").page(params[:page]).per(10)
     @blogs = @user.blogs.order("id DESC").page(params[:page]).per(10)
 
-    # フォロー
+    # フォロー・フォロワーを取得
     @followings = @user.followings.page(params[:page]).per(10)
-    # フォロワー
     @followers = @user.followers.page(params[:page]).per(10)
 
-    # DM機能
-    @exist_room = true
-    if Room.where(user1_id: current_user.id, user2_id: @user.id).exists?
-      @room = Room.where(user1_id: current_user.id, user2_id: @user.id)
-    elsif Room.where(user1_id: @user.id, user2_id: current_user.id).exists?
-      @room = Room.where(user1_id: @user.id, user2_id: current_user.id)
-    else
-      @room = Room.new
-      @exist_room = false
+    # DM機能(チャットルームが存在するか判断し、無かったら作成する)
+    if user_signed_in?
+      @exist_room = true
+      if Room.where(user1_id: current_user.id, user2_id: @user.id).exists?
+        @room = Room.where(user1_id: current_user.id, user2_id: @user.id)
+      elsif Room.where(user1_id: @user.id, user2_id: current_user.id).exists?
+        @room = Room.where(user1_id: @user.id, user2_id: current_user.id)
+      else
+        @room = Room.new
+        @exist_room = false
+      end
+
+      @rooms = Room.where(user1_id: @user.id)
+      @rooms += Room.where(user2_id: @user.id)
     end
-    @rooms = Room.where(user1_id: current_user.id) and Room.where(user2_id: current_user.id)
   end
 
   def edit
@@ -46,5 +52,12 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :profile_image, :introduction, :status)
+  end
+
+  def ensure_correct_user
+    @user = User.find(params[:id])
+    unless @user == current_user
+      redirect_to user_path(@user)
+    end
   end
 end

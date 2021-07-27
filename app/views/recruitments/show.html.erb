@@ -7,6 +7,7 @@
       <div class="show-top">
         <h3>募集詳細</h3>
         <% if @recruit.user == current_user %>
+          <%= link_to "募集を編集する", edit_recruitment_path(@recruit), class:'btn btn-info edit-btn' %>
           <%= link_to "募集を削除する", recruitment_path, method: :delete, data: { confirm: "【確認】募集を削除してもよろしいですか？" }, class:'btn btn-danger' %>
         <% end %>
       </div>
@@ -59,19 +60,21 @@
         </tbody>
       </table>
 
-      <div class="text-center">
-        <% if @recruit.user_id != current_user.id %>
-          <% if @exist_room == true %>
-            <%= link_to "募集の投稿者にメッセージを送る", room_path(@room.ids), class:'btn btn-info' %>
-          <% else %>
-            <%= form_with model:@room, url: rooms_path, local: true do |f| %>
-              <%= f.hidden_field :user1_id, :value => current_user.id %>
-              <%= f.hidden_field :user2_id, :value => @recruit.user_id %>
-              <%= f.submit "募集の投稿者にメッセージを送る", class:'btn btn-info' %>
+      <% if user_signed_in? %>
+        <div class="text-center">
+          <% if @recruit.user_id != current_user.id %>
+            <% if @exist_room == true %>
+              <%= link_to "募集の投稿者にメッセージを送る", room_path(@room.ids), class:'btn btn-info' %>
+            <% else %>
+              <%= form_with model:@room, url: rooms_path, local: true do |f| %>
+                <%= f.hidden_field :user1_id, :value => current_user.id %>
+                <%= f.hidden_field :user2_id, :value => @recruit.user_id %>
+                <%= f.submit "募集の投稿者にメッセージを送る", class:'btn btn-info' %>
+              <% end %>
             <% end %>
           <% end %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
