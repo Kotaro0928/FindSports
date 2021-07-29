@@ -7,7 +7,7 @@
       <div class="show-top">
         <h3>ブログ詳細</h3>
         <% if @blog.user == current_user %>
-          <%= link_to "募集を編集する", edit_blog_path(@blog), class:'btn btn-info edit-btn' %>
+          <%= link_to "ブログを編集する", edit_blog_path(@blog), class:'btn btn-info edit-btn' %>
           <%= link_to "ブログを削除する", blog_path, method: :delete, data: { confirm: "【確認】ブログを削除してもよろしいですか？" }, class:'btn btn-danger' %>
         <% end %>
       </div>

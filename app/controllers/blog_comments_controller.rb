@@ -13,9 +13,8 @@ class BlogCommentsController < ApplicationController
 
   def destroy
     @blog = Blog.find(params[:blog_id])
-    @blog_comment = @blog.blog_comments.find_by(blog_id: @blog.id)
+    @blog_comment = @blog.blog_comments.find_by(id: params[:id], blog_id: params[:blog_id])
     @blog_comment.destroy
-    # BlogComment.find_by(id: params[:id], blog_id: params[:blog_id]).destroy
   end
 
   private

@@ -140,6 +140,28 @@
   padding: 0;
   .recruit-record {
     padding: 7px 0;
+    position: relative;
+    .triangle{
+      position: absolute;
+      right: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 130px 90px 0;
+      border-color: transparent #FFDBC9 transparent transparent;
+      line-height: 0px;
+      _border-color: #000000 #FFDBC9 #000000 #000000;
+      _filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
+      opacity: .5;
+    }
+    .days-left {
+      position: absolute;
+      right: 3px;
+      text-align: right;
+      p {
+        color: #FF0000;
+      }
+    }
   }
 }
 .recruit-records > li {
