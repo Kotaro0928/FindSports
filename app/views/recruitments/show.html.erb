@@ -4,6 +4,16 @@
       <%= render 'layouts/sidebar' %>
     </div>
     <div class="col-lg-9 show-recruit">
+      <% diff = @recruit.due_date - Time.zone.now %>
+      <% s = diff % 60 %>
+      <% m = ((diff - s) / 60) % 60 %>
+      <% h = ((diff - s - m * 60) / (60 ** 2)) % 24 %>
+      <% d = ((diff - s - m * 60 - h * 60 ** 2) / (60**2 * 24)) %>
+      <% if d.to_i < 0 %>
+        <div class="text-center mb-5 recruit-end">
+          <h3>この募集は終了しました</h3>
+        </div>
+      <% end %>
       <div class="show-top">
         <h3>募集詳細</h3>
         <% if @recruit.user == current_user %>

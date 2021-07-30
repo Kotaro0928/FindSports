@@ -13,6 +13,7 @@
           <li class="recruit-record">
             <div class="triangle"></div>
             <div class="days-left">
+              <%# 現在時刻と応募の締め切り時刻の差分をとっている %>
               <% diff = recruit.due_date - Time.zone.now %>
               <% s = diff % 60 %>
               <% m = ((diff - s) / 60) % 60 %>

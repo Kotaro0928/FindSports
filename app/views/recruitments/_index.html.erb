@@ -1,6 +1,30 @@
 <ul class="recruit-records">
   <% recruits.order("id DESC").each do |recruit| %>
     <li class="recruit-record">
+      <div class="triangle"></div>
+      <div class="days-left">
+        <%# 現在時刻と応募の締め切り時刻の差分をとっている %>
+        <% diff = recruit.due_date - Time.zone.now %>
+        <% s = diff % 60 %>
+        <% m = ((diff - s) / 60) % 60 %>
+        <% h = ((diff - s - m * 60) / (60 ** 2)) % 24 %>
+        <% d = ((diff - s - m * 60 - h * 60 ** 2) / (60**2 * 24)) %>
+        <% if d.to_i < 0 %>
+          <p class="font-weight-bold">
+            終了しました
+          </p>
+        <% elsif d.to_i == 0 %>
+          <p class="font-weight-bold">
+            応募終了まで</br>
+            <%= h.to_i %>時間&emsp;
+          </p>
+        <% else %>
+          <p class="font-weight-bold">
+            応募終了まで</br>
+            <%= d.to_i %>日&emsp;
+          </p>
+        <% end %>
+      </div>
       <%= link_to recruitment_path(recruit), class:'title' do %>
         <%= recruit.title %></br>
       <% end %>

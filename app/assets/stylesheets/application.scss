@@ -203,6 +203,12 @@
 //recruitments/idページ
 .show-recruit {
   margin: 50px auto;
+  .recruit-end {
+    h3 {
+      background: #FF4F50;
+      color: white;
+    }
+  }
   .show-top {
     margin-bottom: 20px;
     display: flex;
