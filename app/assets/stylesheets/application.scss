@@ -1,6 +1,11 @@
 @import "bootstrap";
 
 // header
+header {
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+}
 .navbar-brand {
   background: image-url("logo.png") no-repeat center;
   background-size: contain;
@@ -86,7 +91,7 @@
 .video {
   position: relative;
   header {
-    position: absolute;
+    position: fixed;
     width: 100%;
     z-index: 1;
     background: rgba(255,255,255,0.4);
@@ -529,3 +534,4 @@
     bottom: 30px;
   }
 }
+
