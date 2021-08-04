@@ -9,8 +9,11 @@ header {
 .navbar-brand {
   background: image-url("logo.png") no-repeat center;
   background-size: contain;
-  height: 40px;
+  height: 60px;
   width: 150px;
+}
+.top-spacer {
+  height: 100px;
 }
 
 //pagination
@@ -28,9 +31,10 @@ header {
 
 //sign_in,sign_upページ
 .devise_block {
-  width: 30%;
-  margin: 30px auto;
+  width: 40%;
+  margin: 0 auto 30px auto;
   border: medium solid #CCC;
+  padding: 0 30px;
   h3 {
     margin: 30px 0;
     text-align: center;
@@ -52,7 +56,6 @@ header {
     text-align: center;
   }
   .sign-up-button {
-    width: 40ex;
     border: none;
     border-radius: 5px;
     color: white;
@@ -68,7 +71,6 @@ header {
     }
   }
   .sign-in-button {
-    width: 40ex;
     border-radius: 5px;
     color: white;
     font-weight: bold;
@@ -535,3 +537,17 @@ header {
   }
 }
 
+
+//レスポンシブ
+@media screen and (max-width:768px) {
+  
+  //全体
+  body {
+    font-size: 120%;
+  }
+  
+  //sign-in,sign-upページ
+  .devise_block {
+    width: 90%;
+  }
+}

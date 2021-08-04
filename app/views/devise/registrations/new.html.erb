@@ -5,26 +5,26 @@
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="field">
-      <%= f.text_field :name, autofocus: true, placeholder: "ニックネーム", size: "40", class: 'enter-field' %>
+      <%= f.text_field :name, autofocus: true, placeholder: "ニックネーム", class: 'enter-field form-control form-control-sm' %>
     </div>
 
     <div class="field">
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", size: "40", class: 'enter-field' %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: 'enter-field form-control form-control-sm' %>
     </div>
 
     <div class="field">
-      <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワード", size: "40", class: 'enter-field' %></br>
+      <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワード", class: 'enter-field form-control form-control-sm' %></br>
       <% if @minimum_password_length %>
         <em>（パスワードは<%= @minimum_password_length %>文字以上で作成してください）</em>
       <% end %>
     </div>
 
     <div class="field">
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワード（確認用）", size: "40", class: 'enter-field' %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワード（確認用）", class: 'enter-field form-control form-control-sm' %>
     </div>
 
     <div class="actions">
-      <%= f.submit "登録する", class: 'btn sign-up-button' %>
+      <%= f.submit "登録する", class: 'btn sign-up-button form-control' %>
     </div>
   <% end %>
 
