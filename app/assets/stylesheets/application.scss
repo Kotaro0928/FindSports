@@ -34,7 +34,7 @@ header {
   width: 40%;
   margin: 0 auto 30px auto;
   border: medium solid #CCC;
-  padding: 0 30px;
+  padding: 0 5%;
   h3 {
     margin: 30px 0;
     text-align: center;
@@ -549,5 +549,12 @@ header {
   //sign-in,sign-upページ
   .devise_block {
     width: 90%;
+  }
+  
+  //user/idページ
+  .img-btns > .profile-edit-btn {
+    position: absolute;
+    top: 0px;
+    right: 0px;
   }
 }
